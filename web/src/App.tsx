@@ -226,6 +226,7 @@ export default function App() {
 
   const selected = jobs.find((j) => j.id === selectedId) ?? null;
   const statusCounts = countBy(jobs, (j) => j.status);
+  const filteredStatusCounts = countBy(filtered, (j) => j.status);
   const queueCounts = countBy(jobs, (j) => j.queue);
   const serviceCounts = countBy(jobs, (j) => j.service);
 
@@ -399,19 +400,19 @@ export default function App() {
               <div className="stat-strip">
                 <div className="stat running">
                   <label>Running</label>
-                  <strong>{statusCounts.running ?? 0}</strong>
+                  <strong>{filteredStatusCounts.running ?? 0}</strong>
                 </div>
                 <div className="stat queued">
                   <label>Queued</label>
-                  <strong>{statusCounts.queued ?? 0}</strong>
+                  <strong>{filteredStatusCounts.queued ?? 0}</strong>
                 </div>
                 <div className="stat succeeded">
                   <label>Succeeded</label>
-                  <strong>{statusCounts.succeeded ?? 0}</strong>
+                  <strong>{filteredStatusCounts.succeeded ?? 0}</strong>
                 </div>
                 <div className="stat failed">
                   <label>Failed</label>
-                  <strong>{statusCounts.failed ?? 0}</strong>
+                  <strong>{filteredStatusCounts.failed ?? 0}</strong>
                 </div>
               </div>
               <div className="chart-pane">
